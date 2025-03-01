@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2564717766601897"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Pet Wheel</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+                        url('https://images.unsplash.com/photo-1594149929911-78975a43d4f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #wheel {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 4px solid #ff6b6b;
+            margin: 20px auto;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            transition: transform 0.5s ease-out;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            left: 50%;
+            transform-origin: 0% 100%;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .segment-text {
+            position: absolute;
+            transform: rotate(-45deg) translate(-30px, 30px);
+            width: 100px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+            color: #333;
+        }
+
+        #result {
+            font-size: 24px;
+            color: #4a90e2;
+            margin: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .controls {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input {
+            padding: 12px;
+            border-radius: 25px;
+            border: 2px solid #4a90e2;
+            width: 220px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 8px #4a90e2;
+        }
+
+        button {
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: none;
+            background: #4a90e2;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐾 Pet Wheel 🎡</h1>
+    <div class="controls">
+        <input type="text" id="petName" placeholder="Enter pet name">
+        <button onclick="addPet()">Add</button>
+        <button onclick="spin()">Spin!</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+    <div id="wheel"></div>
+    <div id="result"></div>
+    
+    <audio id="winSound" src="sounds/winner.mp3"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        let pets = [];
+        let isSpinning = false;
+        let currentRotation = 0;
+        let animationId = null;
+        let demoActive = true;
+
+        function startInfiniteSpin() {
+            const wheel = document.getElementById('wheel');
+            let rotation = 0;
+            
+            function animate() {
+                if(!demoActive) return;
+                
+                rotation += 1;
+                wheel.style.transform = `rotate(${rotation}deg)`;
+                animationId = requestAnimationFrame(animate);
+            }
+            
+            cancelAnimationFrame(animationId);
+            animate();
+        }
+
+        function addPet() {
+            const pet = document.getElementById('petName').value.trim();
+            if (pet) {
+                if(pets.includes(pet)) {
+                    alert("This pet name already exists!");
+                    return;
+                }
+                
+                pets.push(pet);
+                document.getElementById('petName').value = '';
+                updateWheelDisplay();
+                currentRotation += 60;
+                document.getElementById('wheel').style.transform = `rotate(${currentRotation}deg)`;
+                demoActive = false;
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function updateWheelDisplay() {
+            const wheel = document.getElementById('wheel');
+            wheel.innerHTML = '';
+            
+            pets.forEach((pet, index) => {
+                const segment = document.createElement('div');
+                segment.className = 'segment';
+                const rotation = (index * 360) / pets.length;
+                segment.style.transform = `rotate(${rotation}deg)`;
+                segment.style.backgroundColor = `hsl(${(index * 360) / pets.length}, 70%, 80%)`;
+                
+                const text = document.createElement('div');
+                text.className = 'segment-text';
+                text.textContent = pet;
+                text.style.transform += `rotate(${-rotation}deg)`;
+                
+                segment.appendChild(text);
+                wheel.appendChild(segment);
+            });
+        }
+
+        function spin() {
+            if (pets.length === 0) {
+                alert("Add pets first!");
+                return;
+            }
+
+            if (!isSpinning) {
+                isSpinning = true;
+                const wheel = document.getElementById('wheel');
+                const result = document.getElementById('result');
+                const audio = document.getElementById('winSound');
+                
+                const winnerIndex = Math.floor(Math.random() * pets.length);
+                const extraSpins = 4;
+                const finalRotation = currentRotation + (extraSpins * 360) + (winnerIndex * (360 / pets.length));
+
+                wheel.style.transition = 'transform 3s cubic-bezier(0, 0.5, 0.5, 1)';
+                wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+                setTimeout(() => {
+                    isSpinning = false;
+                    currentRotation = finalRotation % 360;
+                    result.textContent = `The chosen one is: ${pets[winnerIndex]} 🎉`;
+                    audio.play().catch(() => console.log("Allow audio in browser!"));
+                    triggerConfetti();
+                }, 3000);
+            }
+        }
+
+        function triggerConfetti() {
+            const defaults = { 
+                spread: 120,
+                startVelocity: 40,
+                gravity: 0.8,
+                ticks: 200,
+                particleCount: 150
+            };
+            confetti({ ...defaults, origin: { x: 0.2 } });
+            confetti({ ...defaults, origin: { x: 0.8 } });
+        }
+
+        function reset() {
+            pets = [];
+            currentRotation = 0;
+            const wheel = document.getElementById('wheel');
+            wheel.innerHTML = '';
+            wheel.style.transform = 'rotate(0deg)';
+            document.getElementById('result').textContent = '';
+            demoActive = true;
+            startInfiniteSpin();
+        }
+
+        // Inicialização
+        window.onload = function() {
+            pets = ['Fluffy', 'Whiskers', 'Buddy', 'Luna', 'Max'];
+            updateWheelDisplay();
+            startInfiniteSpin();
+            
+            document.body.addEventListener('click', () => {
+                const audio = document.getElementById('winSound');
+                audio.play().then(() => audio.pause());
+            });
+        };
+    </script>
+</body>
+</html>
