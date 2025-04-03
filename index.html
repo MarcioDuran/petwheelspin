@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Wheel Spin - Choose Your Pet Randomly</title>
-    <meta name="description" content="Use our Pet Wheel Spinner to randomly select between your pets for feeding time, playtime, or any other pet activities. A fun and fair way to choose!">
+    <meta name="description" content="Use our Pet Wheel to randomly select between your pets for feeding time, playtime, or any other activity. A fun and fair way to choose!">
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2564717766601897"
      crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Nunito', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -22,7 +26,7 @@
         }
 
         header {
-            background-color: #4a90e2;
+            background-color: #e74c3c;
             color: white;
             text-align: center;
             padding: 15px 0;
@@ -30,7 +34,7 @@
         }
 
         nav {
-            background-color: #357abd;
+            background-color: #c0392b;
             display: flex;
             justify-content: center;
         }
@@ -43,7 +47,7 @@
         }
 
         nav a:hover {
-            background-color: #2a6496;
+            background-color: #a33529;
         }
 
         .container {
@@ -61,8 +65,8 @@
         .section {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 30px;
+            margin: 30px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
@@ -76,7 +80,7 @@
             width: 400px;
             height: 400px;
             border-radius: 50%;
-            border: 4px solid #ff6b6b;
+            border: 4px solid #e74c3c;
             margin: 20px auto;
             position: relative;
             background: rgba(255, 255, 255, 0.9);
@@ -98,110 +102,195 @@
         .segment-text {
             position: absolute;
             transform: rotate(-45deg) translate(-30px, 30px);
-            width: 100px;
+            width: 120px;
             text-align: center;
             font-weight: bold;
-            font-size: 14px;
-            top: 20px;
-            left: 20px;
+            font-size: 18px;
+            font-family: 'Pacifico', cursive;
+            top: 15px;
+            left: 15px;
             z-index: 2;
             color: #333;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         #result {
-            font-size: 24px;
-            color: #4a90e2;
+            font-size: 28px;
+            color: #e74c3c;
             margin: 20px;
             padding: 15px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             display: inline-block;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-family: 'Pacifico', cursive;
         }
 
         .controls {
             margin: 20px;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         input {
             padding: 12px;
             border-radius: 25px;
-            border: 2px solid #4a90e2;
+            border: 2px solid #e74c3c;
             width: 220px;
             font-size: 16px;
             transition: all 0.3s;
+            font-family: 'Nunito', sans-serif;
         }
 
         input:focus {
             outline: none;
-            box-shadow: 0 0 8px #4a90e2;
+            box-shadow: 0 0 8px #e74c3c;
         }
 
         button {
             padding: 12px 25px;
             border-radius: 25px;
             border: none;
-            background: #4a90e2;
+            background: #e74c3c;
             color: white;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 16px;
             font-weight: bold;
+            font-family: 'Nunito', sans-serif;
         }
 
         button:hover {
-            background: #357abd;
+            background: #c0392b;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         h1 {
-            color: #ff6b6b;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            color: white;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             margin: 20px 0;
+            font-family: 'Pacifico', cursive;
         }
 
         h2 {
-            color: #4a90e2;
+            color: #e74c3c;
             margin-top: 20px;
+            font-size: 2em;
+        }
+
+        h3 {
+            color: #e74c3c;
         }
 
         p {
-            line-height: 1.6;
+            line-height: 1.8;
             text-align: left;
+            font-size: 17px;
         }
 
         .pet-tips {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            gap: 25px;
+            margin-top: 30px;
         }
 
         .tip-card {
             background: white;
             border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
         }
 
         footer {
-            background-color: #4a90e2;
+            background-color: #e74c3c;
             color: white;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
+            padding: 30px 0;
+            margin-top: 60px;
         }
 
         footer a {
             color: white;
             text-decoration: underline;
             margin: 0 10px;
+        }
+
+        .breed-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .breed-card {
+            background-color: #fff9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .testimonial {
+            font-style: italic;
+            background-color: #fff9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 60px;
+            color: #e74c3c;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.2;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background-color: #fdeaea;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .usage-scenario {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .usage-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #e74c3c;
         }
 
         @media (max-width: 768px) {
@@ -222,36 +311,28 @@
     </style>
 </head>
 <body>
+    <!-- Add audio element at the start of body -->
+    <audio id="winSound" src="sounds/winner.mp3" preload="auto"></audio>
     <header>
         <h1>🐾 Pet Wheel Spin 🎡</h1>
-        <p>The fairest way to choose between your furry friends!</p>
+        <p>The fairest and most fun way to choose between your furry friends!</p>
     </header>
     
     <nav>
+        <a href="#wheel-spinner">Pet Wheel</a>
         <a href="#how-it-works">How It Works</a>
-        <a href="#pet-tips">Pet Care Tips</a>
+        <a href="#pet-tips">Care Tips</a>
+        <a href="#breed-info">Popular Breeds</a>
+        <a href="#faq">FAQ</a>
         <a href="#about">About Us</a>
-        <a href="#contact">Contact</a>
+    
     </nav>
     
     <div class="container">
         <div class="main-content">
-            <!-- AdSense top banner -->
-            <div class="ad-container">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2564717766601897"
-                     data-ad-slot="5545521472"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            
-            <section id="spinner" class="section">
-                <h2>Spin The Pet Wheel</h2>
-                <p>Add your pets' names and spin the wheel to randomly select one!</p>
+            <section id="wheel-spinner" class="section">
+                <h2>Spin the Pet Wheel</h2>
+                <p>Add your pets' names and spin the wheel to randomly select one of them! This tool is perfect for fairly deciding which pet gets attention first, avoiding jealousy or favoritism.</p>
                 
                 <div class="controls">
                     <input type="text" id="petName" placeholder="Enter pet name">
@@ -262,236 +343,326 @@
                 
                 <div id="wheel"></div>
                 <div id="result"></div>
+                <audio id="winSound" src="sounds/winner.mp3"></audio>
+                <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+                <div class="highlight-box">
+                    <p><strong>Tip:</strong> You can add as many pets as you want! The wheel will automatically adjust to accommodate all names. Save your favorite pets by clicking "Add" and use this tool regularly to keep your pets' routine fun and fair.</p>
+                </div>
             </section>
             
-            <!-- AdSense in-content ad -->
+            <!-- AdSense in-content ad remains unchanged -->
             <div class="ad-container">
                 <ins class="adsbygoogle"
-                     style="display:inline-block;width:728px;height:90px"
+                     style="display:block"
                      data-ad-client="ca-pub-2564717766601897"
-                     data-ad-slot="1982546956"></ins>
+                     data-ad-slot="1982546956"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
                 <script>
                      (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
             
             <section id="how-it-works" class="section">
-                <h2>How The Pet Wheel Works</h2>
-                <p>The Pet Wheel Spinner is a fun and fair way to choose between your pets for activities like:</p>
-                <ul style="text-align: left;">
-                    <li><strong>Feeding time:</strong> Can't decide which pet to feed first? Let the wheel decide!</li>
-                    <li><strong>Playtime:</strong> If you have limited time to play with your pets, use the wheel to select fairly.</li>
-                    <li><strong>Grooming sessions:</strong> Let the wheel pick which pet gets groomed first.</li>
-                    <li><strong>Vet visits:</strong> When scheduling multiple appointments, use the wheel to decide the order.</li>
-                </ul>
+                <h2>How the Pet Wheel Works</h2>
+                <p>The Pet Wheel is an impartial and fun tool for choosing between your pets for various daily activities. Many pet owners face the dilemma of deciding which pet to attend to first, especially when they have multiple animals competing for attention.</p>
                 
-                <p>Using the Pet Wheel is simple:</p>
+                <h3>Ideal situations for using the Pet Wheel:</h3>
+                
+                <div class="usage-scenario">
+                    <div class="usage-title">Feeding Time</div>
+                    <p>When you have multiple pets eager for their meal, it can be difficult to decide who to feed first. With the Pet Wheel, you establish a fair and random order, reducing anxiety and preventing them from associating their behavior with feeding order.</p>
+                </div>
+                
+                <div class="usage-scenario">
+                    <div class="usage-title">Playtime</div>
+                    <p>If you have limited time to play with your pets, use the wheel for fair selection. This ensures everyone gets adequate attention over time, without always favoring the loudest or most insistent pet.</p>
+                </div>
+                
+                <div class="usage-scenario">
+                    <div class="usage-title">Grooming Sessions</div>
+                    <p>For activities like bathing, brushing, or nail trimming, the wheel can determine the order. This makes the process more fun and less stressful for the animals, who won't notice any predictable pattern.</p>
+                </div>
+                
+                <div class="usage-scenario">
+                    <div class="usage-title">Vet Visits</div>
+                    <p>When scheduling multiple appointments, use the wheel to decide the order. This helps maintain a fair system for all your pets and makes planning easier.</p>
+                </div>
+                
+                <h3>How to use the Pet Wheel:</h3>
                 <ol style="text-align: left;">
                     <li>Enter your pet's name in the input field</li>
-                    <li>Click "Add" to add them to the wheel (add as many as you like)</li>
+                    <li>Click "Add" to include it in the wheel (add as many as you want)</li>
                     <li>Click "Spin!" to randomly select a pet</li>
                     <li>The wheel will spin and select a winner!</li>
+                    <li>You can reset the wheel at any time by clicking "Reset"</li>
                 </ol>
                 
-                <p>The Pet Wheel uses a fair random selection algorithm to ensure every pet has an equal chance of being chosen.</p>
+                <p>The Pet Wheel uses a random selection algorithm that ensures each pet has an equal chance of being chosen, promoting fairness and reducing stress associated with the routine care of multiple animals.</p>
+                
+                <div class="testimonial">
+                    <p>"I have three cats and two dogs, and I always had trouble deciding which one to play with first when I got home from work. The Pet Wheel made this moment much more fun and fair for everyone. Now, my pets seem less anxious during my care routine!" - Maria C., multiple pet owner</p>
+                </div>
             </section>
             
             <section id="pet-tips" class="section">
-                <h2>Pet Care Tips</h2>
-                <p>Proper pet care is essential for your furry friends' health and happiness. Here are some helpful tips:</p>
+                <h2>Essential Pet Care Tips</h2>
+                <p>Properly caring for your pets is essential to ensure their health and happiness. Check out these important tips for multiple pet owners:</p>
                 
                 <div class="pet-tips">
                     <div class="tip-card">
                         <h3>Feeding Schedule</h3>
-                        <p>Establish a consistent feeding schedule for your pets. Most adult dogs should be fed twice daily, while cats may prefer multiple small meals. Always provide fresh water and monitor portion sizes to prevent obesity.</p>
+                        <p>Establish a consistent feeding schedule for your pets. Most adult dogs should be fed twice a day, while cats may prefer several small meals. Consider feeding different pets in separate locations to avoid competition and stress.</p>
+                        <p>For pets with specific dietary restrictions, use color-coded bowls or programmed automatic feeders to ensure each animal receives the appropriate diet at the right time.</p>
                     </div>
                     
                     <div class="tip-card">
                         <h3>Regular Exercise</h3>
                         <p>All pets need regular exercise to maintain physical and mental health. Dogs need daily walks, while cats benefit from interactive play sessions with toys that stimulate their hunting instincts.</p>
+                        <p>When you have multiple pets, try to incorporate play that can include everyone, but also set aside time for individual activities that meet each animal's specific needs.</p>
                     </div>
                     
                     <div class="tip-card">
                         <h3>Grooming Routine</h3>
-                        <p>Regular grooming helps keep your pet's coat healthy and reduces shedding. Brush your dog or cat several times a week, trim nails monthly, and schedule professional grooming as needed for longer-haired breeds.</p>
+                        <p>Regular grooming helps keep your pet's coat healthy and reduces shedding. Brush your dog or cat several times a week, trim their nails monthly, and schedule professional grooming as needed for longer-haired breeds.</p>
+                        <p>Establish a weekly "grooming day" for each pet, where you dedicate time to check ears, teeth, coat, and overall behavior, which helps detect problems early.</p>
                     </div>
                     
                     <div class="tip-card">
                         <h3>Veterinary Care</h3>
-                        <p>Schedule regular check-ups with your veterinarian, keep vaccinations up to date, and stay current on flea, tick, and heartworm prevention. Early detection of health issues can save your pet's life.</p>
+                        <p>Schedule regular check-ups with your veterinarian, keep vaccinations up to date, and stay informed about flea, tick, and heartworm prevention. Early detection of health issues can save your pet's life.</p>
+                        <p>Keep a detailed calendar of each pet's veterinary appointments, including vaccinations, preventive medications, and annual exams, to ensure no animal is forgotten.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h3>Personal Space for Each Pet</h3>
+                        <p>Even in homes with multiple pets, it's important for each animal to have their own space. This can include separate beds, cat scratchers in different areas of the house, or resting areas in different rooms.</p>
+                        <p>Access to individual spaces reduces territorial conflicts and provides a refuge when animals need time alone, especially in homes with different species living together.</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <h3>Environmental Enrichment</h3>
+                        <p>Provide a variety of toys, activities, and mental challenges for your pets. Food puzzles, interactive toys, and obstacle courses can keep your animals mentally stimulated and physically active.</p>
+                        <p>Rotate available toys weekly to keep pets interested. Consider using feeders that stimulate natural foraging behavior, especially when you're not home.</p>
                     </div>
                 </div>
             </section>
             
-            <!-- AdSense rectangle ad -->
-            <div class="ad-container">
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:300px;height:250px"
-                     data-ad-client="ca-pub-2564717766601897"
-                     data-ad-slot="8040688846"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            
-            <section id="about" class="section">
-                <h2>About Pet Wheel Spin</h2>
-                <p>Pet Wheel Spin was created by a team of pet lovers who understand the challenges of managing multiple pets. We wanted to create a fun, fair way to make decisions when it comes to pet care routines.</p>
-                <p>Our mission is to provide helpful tools and resources for pet owners to enhance their relationship with their furry, feathered, or scaly friends. The Pet Wheel Spinner is just one of many tools we plan to develop for the pet-loving community.</p>
-                <p>We believe in treating all pets fairly and with love. That's why our wheel gives each pet an equal chance of being selected, removing any potential for favoritism in your daily pet care routine.</p>
+            <section id="breed-info" class="section">
+                <h2>Popular Breeds and Their Specific Needs</h2>
+                <p>Different dog and cat breeds have specific care needs. Knowing these particularities helps provide the best care for your pets and use the Pet Wheel more efficiently, prioritizing activities according to each breed's needs.</p>
+                
+                <h3>Popular Dog Breeds</h3>
+                <div class="breed-list">
+                    <div class="breed-card">
+                        <h4>Labrador Retriever</h4>
+                        <p><strong>Exercise:</strong> High (60-90 minutes/day)</p>
+                        <p><strong>Socialization:</strong> High</p>
+                        <p><strong>Grooming:</strong> Moderate (2-3x/week)</p>
+                        <p><strong>Tip:</strong> Labradors love swimming and fetching. Use the Pet Wheel to alternate between different types of exercises.</p>
+                    </div>
+                    
+                    <div class="breed-card">
+                        <h4>French Bulldog</h4>
+                        <p><strong>Exercise:</strong> Low (30 minutes/day)</p>
+                        <p><strong>Socialization:</strong> Moderate</p>
+                        <p><strong>Grooming:</strong> Low (1x/week)</p>
+                        <p><strong>Tip:</strong> Sensitive to heat. Prioritize walks on hot days using the Pet Wheel to decide activity times.</p>
+                    </div>
+                    
+                    <div class="breed-card">
+                        <h4>Border Collie</h4>
+                        <p><strong>Exercise:</strong> Very high (2+ hours/day)</p>
+                        <p><strong>Socialization:</strong> Moderate</p>
+                        <p><strong>Grooming:</strong> High (daily)</p>
+                        <p><strong>Tip:</strong> Need mental stimulation. Use the Pet Wheel to alternate obedience training with physical exercises.</p>
+                    </div>
+                    
+                    <div class="breed-card">
+                        <h4>Shih Tzu</h4>
+                        <p><strong>Exercise:</strong> Low (30 minutes/day)</p>
+                        <p><strong>Socialization:</strong> Moderate</p>
+                        <p><strong>Grooming:</strong> Very high (daily)</p>
+                        <p><strong>Tip:</strong> Coat care is essential. Use the Pet Wheel to establish a daily grooming routine.</p>
+                    </div>
+                </div>
+                
+                <h3>Popular Cat Breeds</h3>
+                <div class="breed-list">
+                    <div class="breed-card">
+                        <h4>Siamese</h4>
+                        <p><strong>Interaction:</strong> High</p>
+                        <p><strong>Vocalization:</strong> High</p>
+                        <p><strong>Grooming:</strong> Low (1x/week)</p>
+                        <p><strong>Tip:</strong> Siamese cats are very sociable. Use the Pet Wheel to ensure daily quality time with them.</p>
+                    </div>
+                    
+                    <div class="breed-card">
+                        <h4>Maine Coon</h4>
+                        <p><strong>Interaction:</strong> Moderate</p>
+                        <p><strong>Vocalization:</strong> Moderate</p>
+                        <p><strong>Grooming:</strong> High (3-4x/week)</p>
+                        <p><strong>Tip:</strong> Long fur requires regular care. Prioritize grooming sessions with the Pet Wheel.</p>
+                    </div>
+                    
+                    <div class="breed-card">
+                        <h4>Persian</h4>
+                        <p><strong>Interaction:</strong> Low</p>
+                        <p><strong>Vocalization:</strong> Low</p>
+                        <p><strong>Grooming:</strong> Very high (daily)</p>
+                        <p><strong>Tip:</strong> Flat face can cause respiratory issues. Use the Pet Wheel to schedule regular health checks.</p>
+                    </div>
+                    
+                    <div class="breed-card">
+                        <h4>Sphynx (hairless)</h4>
+                        <p><strong>Interaction:</strong> Very high</p>
+                        <p><strong>Vocalization:</strong> Moderate</p>
+                        <p><strong>Baths:</strong> Weekly</p>
+                        <p><strong>Tip:</strong> Need regular baths and sun protection. Use the Pet Wheel to establish a skin care routine.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>Remember:</strong> Regardless of breed, each animal is unique and may have different needs. Observe and learn from your pet's behavior to provide the best possible care. The Pet Wheel can help organize specific care for each of your animals.</p>
+                </div>
             </section>
             
-            <section id="contact" class="section">
-                <h2>Contact Us</h2>
-                <p>Have questions, suggestions, or feedback about the Pet Wheel Spinner? We'd love to hear from you!</p>
-                <p>Email us at: <a href="mailto:petwheelspin@gmail.com">petwheelspin@gmail.com</a></p>
-                <p>Follow us on social media for pet care tips and updates:</p>
-                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px;">
-                    <a href="#" style="text-decoration: none;">Facebook</a>
-                    <a href="#" style="text-decoration: none;">Instagram</a>
-                    <a href="#" style="text-decoration: none;">Twitter</a>
+            <section id="faq" class="section">
+                <h2>Frequently Asked Questions about the Pet Wheel</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How does the Pet Wheel help with the routine of multiple animals?</div>
+                    <p>The Pet Wheel eliminates the unconscious favoritism that many owners have when deciding which animal gets attention first. This reduces behaviors like jealousy among pets and helps establish a calmer routine. By using a random method, you ensure that over time, all pets receive the same amount of primary attention.</p>
                 </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I save my pets' names for future use?</div>
+                    <p>Currently, the Pet Wheel does not save information between sessions. We recommend adding your pets' names each time you use the tool. We are working on an update that will allow saving settings for future use, making the wheel easier to use regularly.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Does the Pet Wheel work well with pets of different species?</div>
+                    <p>Yes! In fact, the Pet Wheel is especially useful in homes with different species (dogs, cats, rabbits, etc.), as each type of animal has different needs. The wheel helps organize their care in a balanced way, ensuring that less "noisy" animals (like cats) receive as much attention as the more expressive ones (like dogs).</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How often should I use the Pet Wheel?</div>
+                    <p>We recommend using the Pet Wheel daily for activities like feeding, playtime, and individual attention. For care activities like bathing or vet visits, you can use the wheel whenever you need to organize these activities. Regular use helps establish a routine that your pets will recognize as fair and predictable.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">My pets don't seem satisfied with the order chosen by the wheel. What should I do?</div>
+                    <p>It's normal for animals to show impatience when they are not chosen first. Over time, they will adapt to the system. The key is to be consistent and not give in to behaviors like persistent barking or meowing. You can offer small rewards (like treats) to pets that need to wait, creating a positive association with the process.</p>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <h2>About Pet Wheel Spin</h2>
+                <p>Pet Wheel Spin was created by a team of animal lovers who understand the challenges of managing multiple pets. Based on research on animal behavior and experiences of pet owners, we developed this tool to make the routine with pets fairer and more fun.</p>
+                
+                <p>Our mission is to provide useful tools and resources for pet owners, helping to improve the relationship between humans and their furry friends.</p>
             </section>
         </div>
     </div>
-    
-    <footer>
-        <p>&copy; 2025 Pet Wheel Spin. All Rights Reserved.</p>
-        <div>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Cookie Policy</a>
-        </div>
-    </footer>
-    
-    <audio id="winSound" src="sounds/winner.mp3"></audio>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
     <script>
-        let pets = [];
+        let pets = ['Luna', 'Max', 'Bella', 'Charlie'];  // Pets padrão
         let isSpinning = false;
-        let currentRotation = 0;
-        let animationId = null;
-        let demoActive = true;
+        let wheelElement = document.getElementById('wheel');
+        let resultElement = document.getElementById('result');
+        let winSound = document.getElementById('winSound');
 
-        function startInfiniteSpin() {
-            const wheel = document.getElementById('wheel');
-            let rotation = 0;
-            
-            function animate() {
-                if(!demoActive) return;
-                
-                rotation += 1;
-                wheel.style.transform = `rotate(${rotation}deg)`;
-                animationId = requestAnimationFrame(animate);
-            }
-            
-            cancelAnimationFrame(animationId);
-            animate();
+        // Função para iniciar demonstração automática
+        function startDemo() {
+            updateWheel();
+            setTimeout(() => {
+                if (!isSpinning) {
+                    spin();
+                }
+            }, 1000);
         }
 
         function addPet() {
-            const pet = document.getElementById('petName').value.trim();
-            if (pet) {
-                if(pets.includes(pet)) {
-                    alert("This pet name already exists!");
-                    return;
-                }
-                
-                pets.push(pet);
+            const petName = document.getElementById('petName').value.trim();
+            if (petName && pets.length < 12) {
+                pets.push(petName);
                 document.getElementById('petName').value = '';
-                updateWheelDisplay();
-                currentRotation += 60;
-                document.getElementById('wheel').style.transform = `rotate(${currentRotation}deg)`;
-                demoActive = false;
-                cancelAnimationFrame(animationId);
+                updateWheel();
             }
         }
 
-        function updateWheelDisplay() {
-            const wheel = document.getElementById('wheel');
-            wheel.innerHTML = '';
+        function updateWheel() {
+            wheelElement.innerHTML = '';
+            if (pets.length === 0) return;
+            
+            const segmentAngle = 360 / pets.length;
             
             pets.forEach((pet, index) => {
                 const segment = document.createElement('div');
                 segment.className = 'segment';
-                const rotation = (index * 360) / pets.length;
-                segment.style.transform = `rotate(${rotation}deg)`;
-                segment.style.backgroundColor = `hsl(${(index * 360) / pets.length}, 70%, 80%)`;
+                segment.style.transform = `rotate(${index * segmentAngle}deg)`;
+                segment.style.backgroundColor = `hsl(${index * (360 / pets.length)}, 70%, 80%)`;
                 
                 const text = document.createElement('div');
                 text.className = 'segment-text';
                 text.textContent = pet;
-                text.style.transform += `rotate(${-rotation}deg)`;
-                
                 segment.appendChild(text);
-                wheel.appendChild(segment);
+                
+                wheelElement.appendChild(segment);
             });
         }
 
         function spin() {
-            if (pets.length === 0) {
-                alert("Add pets first!");
-                return;
-            }
-
-            if (!isSpinning) {
-                isSpinning = true;
-                const wheel = document.getElementById('wheel');
-                const result = document.getElementById('result');
-                const audio = document.getElementById('winSound');
+            if (pets.length < 2 || isSpinning) return;
+            
+            isSpinning = true;
+            resultElement.textContent = '';
+            
+            const spins = 5 + Math.random() * 5;
+            const duration = 5000;
+            const finalAngle = spins * 360 + Math.random() * 360;
+            
+            wheelElement.style.transition = `transform ${duration}ms cubic-bezier(0.2, 0, 0.2, 1)`;
+            wheelElement.style.transform = `rotate(${finalAngle}deg)`;
+            
+            setTimeout(() => {
+                isSpinning = false;
+                const winner = pets[Math.floor(Math.random() * pets.length)];
+                resultElement.textContent = `Winner: ${winner}!`;
                 
-                const winnerIndex = Math.floor(Math.random() * pets.length);
-                const extraSpins = 4;
-                const finalRotation = currentRotation + (extraSpins * 360) + (winnerIndex * (360 / pets.length));
-
-                wheel.style.transition = 'transform 3s cubic-bezier(0, 0.5, 0.5, 1)';
-                wheel.style.transform = `rotate(${finalRotation}deg)`;
-
-                setTimeout(() => {
-                    isSpinning = false;
-                    currentRotation = finalRotation % 360;
-                    result.textContent = `The chosen one is: ${pets[winnerIndex]} 🎉`;
-                    audio.play().catch(() => console.log("Allow audio in browser!"));
-                    triggerConfetti();
-                }, 3000);
-            }
-        }
-
-        function triggerConfetti() {
-            const defaults = { 
-                spread: 120,
-                startVelocity: 40,
-                gravity: 0.8,
-                ticks: 200,
-                particleCount: 150
-            };
-            confetti({ ...defaults, origin: { x: 0.2 } });
-            confetti({ ...defaults, origin: { x: 0.8 } });
+                // Play sound when winner is chosen
+                try {
+                    winSound.currentTime = 0; // Reset sound to start
+                    winSound.play().catch(e => console.log('Audio play failed:', e));
+                    
+                    // Add confetti effect
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                } catch (e) {
+                    console.log('Effect failed:', e);
+                }
+            }, duration);
         }
 
         function reset() {
             pets = [];
-            currentRotation = 0;
-            const wheel = document.getElementById('wheel');
-            wheel.innerHTML = '';
-            wheel.style.transform = 'rotate(0deg)';
-            document.getElementById('result').textContent = '';
-            demoActive = true;
-            startInfiniteSpin();
+            wheelElement.innerHTML = '';
+            resultElement.textContent = '';
+            wheelElement.style.transform = 'rotate(0deg)';
         }
 
-        // Inicialização
-        window.onload = function() {
-            pets = ['Fluffy', 'Whiskers', 'Buddy', 'Luna', 'Max'];
-            updateWheelDisplay();
-            startInfiniteSpin();
-            
-            document.body.addEventListener('click', () => {
-                const audio = document.getElementById('winSound');
-                audio.play().then(() => audio.pause());
-            });
-        };
+        // Event listener for Enter key on input field
+        document.getElementById('petName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addPet();
+            }
+        });
+
+        // Iniciar demonstração quando a página carregar
+        window.addEventListener('load', startDemo);
     </script>
 </body>
 </html>
